@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ely-alamillo/url-shortner/issues"
   },
-  "homepage": "https://github.com/ely-alamillo/url-shortner#readme"
+  "homepage": "https://github.com/ely-alamillo/url-shortner#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0"
+  }
 }
