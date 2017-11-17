@@ -1,5 +1,6 @@
 const Url = require('../models/UrlModel');
 const dotenv = require('dotenv').config();
+const hash = require('../helpers/hash');
 
 const SERVER_USER_ERROR = 422;
 
@@ -21,11 +22,41 @@ const sendUserError = (err, res) => {
 const shortenUrl = (req, res) => {
   const { longUrl } = req.body;
   let shortUrl = '';
-  // 
-  // // check if url has alredy been shortened
-  // Url.findOne({ longUrl }, (err, res) => {
-  //   shortUrl = process.env.
-  // });
+  console.log(longUrl);
+  // check if url has alredy been shortened
+  Url.findOne({ long_url: longUrl }, (err, url) => {
+    if (url) {
+      shortUrl = process.env.BASE_URL + hash.encode(url._id);
+      res.json({ shortUrl, existed: true });
+    } else {
+      const newUrl = new Url({ long_url: longUrl });
+      newUrl.save((err) => {
+        if (err) return sendUserError(err, res);
+        shortUrl = process.env.BASE_URL + hash.encode(newUrl._id);
+        res.json({ shortUrl })
+      });
+    }
+  });
 };
 
-console.log(process.env.BASE_URL);
+const decodeShortUrl = (req, res) => {
+  console.log(req.params);
+  const { encodedUrl } = req.params;
+  const id = hash.decode(encodedUrl);
+  Url.findOne({ _id: id }, (err, url) => {
+    if (err) return sendUserError(err, res);
+    res.redirect(url.long_url)
+    // res.redirect('https://google.com')
+    // res.json(url.long_url);
+  });
+};
+
+const sayHi = (req, res) => {
+  res.json({ message: 'hello' });
+};
+
+module.exports = {
+  shortenUrl,
+  decodeShortUrl,
+  sayHi,
+};
