@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-let startCount = true;
+const sequence = 10000;
 
 const counterSchema = Schema({
   _id: { type: String, required: true },
-  seq: { type: Number, default: 0 }
+  seq: { type: Number, default: sequence }
 });
-const counter = mongoose.model('counter', counterSchema);
+const Counter = mongoose.model('counter', counterSchema);
 
 const urlSchema = new Schema({
   _id: { type: String },
@@ -16,17 +16,20 @@ const urlSchema = new Schema({
 
 // hook checks id url_count is initaliazed if not it intializes it
 urlSchema.pre('save', function(next) {
-  counter.findOne({ _id: 'url_count' }, function(err, counter) {
-    if (err || !counter) initCounter();
+
+  Counter.findOne({ _id: 'url_count' }, function(err, counter) {
+    if (err || !counter) {
+      initCounter();
+    }
+    next();
   });
-  next();
 });
 
 // increments the counter for each new entry
 urlSchema.pre('save', function(next) {
   const doc = this;
   // increments the current counter +1 and sets it to be _id of new entry
-  counter.findByIdAndUpdate({ _id: 'url_count' }, { $inc: { seq: 1 } }, { new: true }, function(err, counter) {
+  Counter.findByIdAndUpdate({ _id: 'url_count' }, { $inc: { seq: 1 } }, { new: true }, function(err, counter) {
     if (err) return next(err);
     doc.created_at = new Date();
     doc._id = counter.seq - 1;
@@ -35,7 +38,7 @@ urlSchema.pre('save', function(next) {
 });
 
 const initCounter = () => {
-  const startCount = new counter({ _id: 'url_count', seq: 0 });
+  const startCount = new Counter({ _id: 'url_count', seq: sequence });
   startCount.save(err => console.log(err));
 };
 
