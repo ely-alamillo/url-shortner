@@ -22,7 +22,6 @@ const decode = (str) => {
   return decoded;
 };
 
-
 module.exports = {
   encode,
   decode,
