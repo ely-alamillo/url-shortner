@@ -32,7 +32,7 @@ const shortenUrl = (req, res) => {
       newUrl.save((err) => {
         if (err) return sendUserError(err, res);
         shortUrl = process.env.BASE_URL + hash.encode(newUrl._id);
-        res.json({ shortUrl })
+        res.json({ shortUrl, existed: false })
       });
     }
   });
