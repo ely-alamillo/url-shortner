@@ -22,7 +22,6 @@ const sendUserError = (err, res) => {
 const shortenUrl = (req, res) => {
   const { longUrl } = req.body;
   let shortUrl = '';
-  console.log(longUrl);
   // check if url has alredy been shortened
   Url.findOne({ long_url: longUrl }, (err, url) => {
     if (url) {
@@ -40,7 +39,6 @@ const shortenUrl = (req, res) => {
 };
 
 const decodeShortUrl = (req, res) => {
-  console.log(req.params);
   const { encodedUrl } = req.params;
   const id = hash.decode(encodedUrl);
   Url.findOne({ _id: id }, (err, url) => {
