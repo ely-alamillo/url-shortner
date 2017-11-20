@@ -6,11 +6,13 @@ const routes = (server) => {
   const apiRoutes = express.Router();
   apiRoutes.route('/shorten')
     .post(urlControllers.shortenUrl);
-  apiRoutes.route('/:encodedUrl')
-    .get(urlControllers.decodeShortUrl);
+  apiRoutes.route('/showall')
+    .get(urlControllers.showAllUrls);
 
   server.route('/:encodedUrl')
     .get(urlControllers.decodeShortUrl);
+
+
   server.use('/api', apiRoutes);
 };
 

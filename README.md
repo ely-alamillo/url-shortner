@@ -20,7 +20,7 @@ The Front-end for the application is built using React and Bootstrap for styling
 ## Example input
 ```javascript
 {
-  shortUrl: 'https://google.com'
+  longUrl: 'https://google.com'
 }
 ```
 
@@ -32,3 +32,27 @@ Returns an object containing the shortened url.
   shortUrl: 'https://baseurl/3y5',
   existed: false
 }
+```
+
+## [GET] Show all shorten urls in the database
+`GET http://baseurl/api/showall`
+
+## Response
+Returns an array containing the all the shortened urls.
+
+```javascript
+[
+  {
+        "_id": "10000",
+        "created_at": "2017-11-18T04:54:43.200Z",
+        "long_url": "https://someurl.com",
+        "__v": 0
+    },
+    {
+        "_id": "10001",
+        "created_at": "2017-11-20T20:02:23.675Z",
+        "long_url": "https://anotherurl.com",
+        "__v": 0
+    }
+]
+```
