@@ -14,13 +14,16 @@ class Navigation extends Component {
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav pullRight>
+          <LinkContainer to={'/about'}>
+            <NavItem>About</NavItem>
+          </LinkContainer>
           <LinkContainer to={'/'}>
             <NavItem>Home</NavItem>
           </LinkContainer>
           <LinkContainer to={'/docs'}>
             <NavItem>Docs</NavItem>
           </LinkContainer>
-          <MenuItem href='https://github.com/ely-alamillo' target='_blank'>Github</MenuItem>
+          {/* <MenuItem href='https://github.com/ely-alamillo' target='_blank'>Github</MenuItem> */}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
