@@ -1,3 +1,11 @@
 .about {
   margin-top: 5rem;
+  height: auto;
+}
+.right-margin {
+ margin-right: 1rem;
+}
+.about-jumbo {
+  background: rgb(255, 255, 255) transparent;
+  background: rgba(255, 255, 255, .95);
 }

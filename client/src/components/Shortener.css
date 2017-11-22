@@ -1,0 +1,24 @@
+.center {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-title {
+  margin-bottom: 3rem;
+}
+
+.short-url {
+  margin-top: 3rem;
+}
+
+.short-url-link {
+  color: #F1A032;
+  font-size: 2em;
+}
+
+.short-url-link:hover {
+  color: #F1A032;
+  font-size: 2em;
+}
