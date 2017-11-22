@@ -23,15 +23,15 @@ class Shortener extends Component {
   handleShorten(event) {
     event.preventDefault();
     const longUrl = this.state.url;
-    axios.post('http://localhost:8080/api/shorten', { longUrl })
+    axios.post(process.env.API_SHORTEN || 'http://localhost:8080/api/shorten', { longUrl })
       .then((res) => {
         this.setState({ shortUrl: res.data.shortUrl });
       })
       // eslint-disable-next-line
       .catch((err) => {
-        this.setState({ error: 'There was an error processing your request, try again.'});
+        this.setState({ error: 'There was an error processing your request, try again.' });
       });
-    this.setState({ url: ''});
+    this.setState({ url: '' });
   }
 
   RenderShortUrl() {
