@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { FormControl, FormGroup, InputGroup, ControlLabel, Row, Col } from 'react-bootstrap';
 
+import './Shortener.css'
+
 class Shortener extends Component {
   constructor() {
     super();
     this.state = {
       url: '',
-      shortUrl: null
+      shortUrl: null,
     };
   };
 
@@ -39,7 +41,11 @@ class Shortener extends Component {
       this.state.shortUrl &&
       <Row>
         <Col md={8} mdOffset={2}>
-          <a href={this.state.shortUrl}>{this.state.shortUrl}</a>
+          <div className='short-url'>
+            <a href={this.state.shortUrl} className='short-url-link'>
+              {this.state.shortUrl}
+            </a>
+          </div>
         </Col>
       </Row>
     );
@@ -47,9 +53,10 @@ class Shortener extends Component {
 
   render() {
     return (
-      <div className='container'>
+      <div className='container center'>
         <Row>
           <Col md={8} mdOffset={2}>
+            <h1 className='main-title'>URL Shortener</h1>
             <form onSubmit={this.handleShorten.bind(this)}>
               <InputGroup bsSize='lg'>
                 <FormControl
