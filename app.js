@@ -38,5 +38,5 @@ app.listen(process.env.PORT, () => {
   // eslint-disable-next-line
   console.log(`server running on port ${process.env.PORT}`);
   // eslint-disable-next-line
-  console.log(proces.env);
+  console.log(process.env);
 });
