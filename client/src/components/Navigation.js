@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, NavItem, MenuItem } from 'react-bootstrap';
+
+import logo from '../logo.svg';
+import './Navigation.css';
 
 class Navigation extends Component {
   render() {
@@ -8,7 +12,10 @@ class Navigation extends Component {
     <Navbar inverse collapseOnSelect>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="/">URL Shortener</a>
+          URL Shortener
+          {/* <Link to='/'> URL Shortener </Link> */}
+          {/* for logo */}
+          {/* <img src={logo}/> */}
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
@@ -17,13 +24,12 @@ class Navigation extends Component {
           <LinkContainer to={'/about'}>
             <NavItem>About</NavItem>
           </LinkContainer>
-          <LinkContainer to={'/'}>
+          <LinkContainer exact to={'/'}>
             <NavItem>Home</NavItem>
           </LinkContainer>
           <LinkContainer to={'/docs'}>
             <NavItem>Docs</NavItem>
           </LinkContainer>
-          {/* <MenuItem href='https://github.com/ely-alamillo' target='_blank'>Github</MenuItem> */}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
