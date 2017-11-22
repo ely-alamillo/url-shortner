@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { FormControl, FormGroup, InputGroup, ControlLabel, Row, Col } from 'react-bootstrap';
+import { FormControl, InputGroup, Row, Col } from 'react-bootstrap';
 
-import './Shortener.css'
+import './Shortener.css';
 
 class Shortener extends Component {
   constructor() {
@@ -11,30 +11,28 @@ class Shortener extends Component {
       url: '',
       shortUrl: null,
     };
-  };
+  }
 
   handleUrl(event) {
     this.setState({
       url: event.target.value,
       shortUrl: null
     });
-  };
+  }
 
   handleShorten(event) {
     event.preventDefault();
     const longUrl = this.state.url;
-    console.log('clicked yo: ', this.state.url);
     axios.post('http://localhost:8080/api/shorten', { longUrl })
       .then((res) => {
-        console.log('resposne: ', res.data);
         this.setState({ shortUrl: res.data.shortUrl });
       })
+      // eslint-disable-next-line
       .catch((err) => {
-        this.setState({ error: 'There was an error processing your request, try again.'})
-        console.log('error: ', err);
+        this.setState({ error: 'There was an error processing your request, try again.'});
       });
     this.setState({ url: ''});
-  };
+  }
 
   RenderShortUrl() {
     return (
@@ -49,7 +47,7 @@ class Shortener extends Component {
         </Col>
       </Row>
     );
-  };
+  }
 
   render() {
     return (
@@ -75,7 +73,7 @@ class Shortener extends Component {
         {this.RenderShortUrl()}
       </div>
     );
-  };
+  }
 }
 
 export default Shortener;

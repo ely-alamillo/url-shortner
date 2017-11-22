@@ -5,7 +5,6 @@ import Navigation from './components/Navigation';
 import Shortener from './components/Shortener';
 import Hello from './components/Hello';
 import About from './components/About';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
