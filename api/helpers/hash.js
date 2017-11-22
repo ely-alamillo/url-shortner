@@ -18,11 +18,11 @@ const decode = (str) => {
     let pow = str.length - 1;
     decoded += index * (Math.pow(base, pow));
     str = str.substring(1);
-  };
+  }
   return decoded;
 };
 
 module.exports = {
   encode,
   decode,
-}
+};

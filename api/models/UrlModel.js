@@ -39,6 +39,7 @@ urlSchema.pre('save', function(next) {
 
 const initCounter = () => {
   const startCount = new Counter({ _id: 'url_count', seq: sequence });
+  // eslint-disable-next-line no-console
   startCount.save(err => console.log(err));
 };
 

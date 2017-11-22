@@ -10,7 +10,7 @@ const sendUserError = (err, res) => {
   if (typeof err === 'string') {
     res.json({ err });
     return;
-  } else if ( err && err.message) {
+  } else if (err && err.message) {
     res.json({
       message: err.message,
       stack: err.stack,
@@ -36,7 +36,7 @@ const shortenUrl = (req, res) => {
       newUrl.save((err) => {
         if (err) return sendUserError(err, res);
         shortUrl = process.env.BASE_URL + hash.encode(newUrl._id);
-        res.json({ shortUrl, existed: false })
+        res.json({ shortUrl, existed: false });
       });
     }
   });
@@ -48,7 +48,7 @@ const decodeShortUrl = (req, res) => {
   const id = hash.decode(encodedUrl);
   Url.findOne({ _id: id }, (err, url) => {
     if (err) return sendUserError(err, res);
-    res.redirect(url.long_url)
+    res.redirect(url.long_url);
   });
 };
 
