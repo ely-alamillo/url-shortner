@@ -1,14 +1,20 @@
 # url-shortner
 ---------------------
 Simple application used to shorten urls.
-## Backend
-The application uses a Node/Express backend to handle all api request. The api gives access to an encode and decode function that are used in the shortening of the url.
 
-##Front-end
-The Front-end for the application is built using React and Bootstrap for styling.
+## Overview
+
+### Backend
+The application uses a Node/Express backend to handle all API request. The API gives access to an encode and decode function that are used in the shortening of the url.
+
+###Front-end
+The Front-end is built as an SPA using React. The styling uses Bootstrap
+and other custom styles.
 
 # API Guide
 -----------------
+Feel free to use the API provided by this application for your own projects.
+
 ## [POST] Shorten a URL
 `POST http://baseurl/api/shorten`
 
