@@ -23,7 +23,7 @@ class Navigation extends Component {
               <NavItem>About</NavItem>
             </LinkContainer>
             <LinkContainer exact to={'/'}>
-              <NavItem>Home</NavItem>
+              <NavItem>Shortener</NavItem>
             </LinkContainer>
             <LinkContainer to={'/docs'}>
               <NavItem>Docs</NavItem>
