@@ -6,7 +6,8 @@ const bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/urlShortner', { useMongoClient: true });
+// mongoose.connect('mongodb://localhost/urlShortner', { useMongoClient: true });
+mongoose.connect(process.env.MONGODB_URI , { useMongoClient: true });
 
 const corsOptions = {
   'origin': 'http://localhost:3000',
