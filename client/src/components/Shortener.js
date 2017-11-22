@@ -23,7 +23,7 @@ class Shortener extends Component {
   handleShorten(event) {
     event.preventDefault();
     const longUrl = this.state.url;
-    axios.post('https://bitsy.herokuapp.com/api/shorten', { longUrl })
+    axios.post('https://bitsy.herokuapp.com/api/shorten', { long_url: longUrl })
       .then((res) => {
         this.setState({ shortUrl: res.data.shortUrl });
       })

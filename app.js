@@ -10,7 +10,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI , { useMongoClient: true });
 
 const corsOptions = {
-  'origin': 'http://localhost:3000',
+  'origin': 'https://bitsy.herokuapp.com',
   'methods': 'GET, HEAD, PUT, PATCH, POST, DELETE',
   'preflightContinue': true,
   'optionsSuccessStatus': 204,
