@@ -7,7 +7,7 @@ Simple application used to shorten urls.
 ### Backend
 The application uses a Node/Express backend to handle all API request. The API gives access to an encode and decode function that are used in the shortening of the url.
 
-###Front-end
+### Front-end
 The Front-end is built as an SPA using React. The styling uses Bootstrap
 and other custom styles.
 
