@@ -4,7 +4,8 @@
   "description": "Simple URL shortner",
   "main": "app.js",
   "scripts": {
-    "lint": "eslint api/*/*.js && eslint app.js"
+    "lint": "eslint api/*/*.js && eslint app.js",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
