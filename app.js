@@ -34,7 +34,7 @@ app.get('/test', (req, res) => {
   res.json({ message: 'hello ely I am working' });
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, '0.0.0.0', () => {
   // eslint-disable-next-line
   console.log(`server running on port ${process.env.PORT}`);
   // eslint-disable-next-line
