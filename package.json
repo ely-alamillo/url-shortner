@@ -4,7 +4,9 @@
   "description": "Simple URL shortner",
   "main": "app.js",
   "scripts": {
-    "lint": "eslint api/*/*.js && eslint app.js"
+    "lint": "eslint api/*/*.js && eslint app.js",
+    "start": "nodemon app.js",
+    "heroku-postbuild": "cd client && npm install --only-dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -29,6 +31,10 @@
     "express": "^4.16.2",
     "mocha": "^4.0.1",
     "mongoose": "^4.13.3",
+    "nodemon": "^1.12.1",
     "sinon": "^4.1.2"
+  },
+  "engines": {
+    "node": "8.0.0"
   }
 }

@@ -6,10 +6,11 @@ const bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/urlShortner', { useMongoClient: true });
+// mongoose.connect('mongodb://localhost/urlShortner', { useMongoClient: true });
+mongoose.connect(process.env.MONGODB_URI , { useMongoClient: true });
 
 const corsOptions = {
-  'origin': 'http://localhost:3000',
+  'origin': true,
   'methods': 'GET, HEAD, PUT, PATCH, POST, DELETE',
   'preflightContinue': true,
   'optionsSuccessStatus': 204,
@@ -17,6 +18,9 @@ const corsOptions = {
 };
 
 const app = express();
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// serves build from npm run build
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,7 +35,12 @@ app.get('/test', (req, res) => {
   res.json({ message: 'hello ely I am working' });
 });
 
-app.listen(process.env.PORT, () => {
+
+app.listen(process.env.PORT, '0.0.0.0', () => {
   // eslint-disable-next-line
   console.log(`server running on port ${process.env.PORT}`);
+  // eslint-disable-next-line
+  console.log(process.env.MONGODB_URI);
+  // eslint-disable-next-line
+  console.log(process.env.BASE_URL);
 });
