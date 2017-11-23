@@ -35,6 +35,7 @@ const shortenUrl = (req, res) => {
       const newUrl = new Url({ long_url: longUrl });
       newUrl.save((err) => {
         if (err) return sendUserError(err, res);
+        console.log('making new url');
         shortUrl = process.env.BASE_URL + hash.encode(newUrl._id);
         res.json({ shortUrl, existed: false });
       });

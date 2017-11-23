@@ -39,4 +39,6 @@ app.listen(process.env.PORT, '0.0.0.0', () => {
   console.log(`server running on port ${process.env.PORT}`);
   // eslint-disable-next-line
   console.log(process.env.MONGODB_URI);
+  // eslint-disable-next-line
+  console.log(process.env.BASE_URL);
 });
