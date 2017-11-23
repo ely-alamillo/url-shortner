@@ -27,7 +27,7 @@ const shortenUrl = (req, res) => {
   // check if url has alredy been shortened
   Url.findOne({ long_url: longUrl }, (err, url) => {
     if (err) return sendUserError(err, res);
-    if (url.long_url === longUrl) {
+    if (url) {
       shortUrl = process.env.BASE_URL + hash.encode(url._id);
       res.json({ shortUrl, existed: true });
       return;
