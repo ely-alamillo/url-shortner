@@ -29,9 +29,9 @@ class Shortener extends Component {
       })
       // eslint-disable-next-line
       .catch((err) => {
-        this.setState({ error: 'There was an error processing your request, try again.'});
+        this.setState({ error: 'There was an error processing your request, try again.' });
       });
-    this.setState({ url: ''});
+    this.setState({ url: '' });
   }
 
   RenderShortUrl() {
@@ -40,7 +40,7 @@ class Shortener extends Component {
       <Row>
         <Col md={8} mdOffset={2}>
           <div className='short-url'>
-            <a href={this.state.shortUrl} className='short-url-link'>
+            <a href={this.state.shortUrl} className='short-url-link' target='_blank'>
               {this.state.shortUrl}
             </a>
           </div>
