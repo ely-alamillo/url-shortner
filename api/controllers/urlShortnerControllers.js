@@ -27,7 +27,7 @@ const shortenUrl = (req, res) => {
   // check if url has alredy been shortened
   Url.findOne({ long_url: longUrl }, (err, url) => {
     if (err) return sendUserError(err, res);
-    if (url) {
+    if (url.long_url === longUrl) {
       shortUrl = process.env.BASE_URL + hash.encode(url._id);
       res.json({ shortUrl, existed: true });
       return;
@@ -35,7 +35,6 @@ const shortenUrl = (req, res) => {
       const newUrl = new Url({ long_url: longUrl });
       newUrl.save((err) => {
         if (err) return sendUserError(err, res);
-        console.log('making new url');
         shortUrl = process.env.BASE_URL + hash.encode(newUrl._id);
         res.json({ shortUrl, existed: false });
       });
