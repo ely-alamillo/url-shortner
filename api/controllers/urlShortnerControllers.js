@@ -28,14 +28,21 @@ const shortenUrl = (req, res) => {
   Url.findOne({ long_url: longUrl }, (err, url) => {
     if (err) return sendUserError(err, res);
     if (url) {
-      shortUrl = process.env.BASE_URL + hash.encode(url._id);
+      // use for local dev
+      // shortUrl = process.env.BASE_URL + hash.encode(url._id);
+      // use for prod
+      shortUrl = process.env.LIVE_URL + hash.encode(url._id);
       res.json({ shortUrl, existed: true });
       return;
     } else {
       const newUrl = new Url({ long_url: longUrl });
       newUrl.save((err) => {
         if (err) return sendUserError(err, res);
-        shortUrl = process.env.BASE_URL + hash.encode(newUrl._id);
+        // use for local dev
+        // shortUrl = process.env.BASE_URL + hash.encode(newUrl._id);
+
+        // use for prod
+        shortUrl = process.env.LIVE_URL + hash.encode(newUrl._id);
         res.json({ shortUrl, existed: false });
       });
     }
