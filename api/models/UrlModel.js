@@ -6,7 +6,6 @@ const counterSchema = Schema({
   _id: { type: String, required: true },
   seq: { type: Number, default: sequence }
 });
-const Counter = mongoose.model('counter', counterSchema);
 
 const urlSchema = new Schema({
   _id: { type: String },
@@ -15,7 +14,7 @@ const urlSchema = new Schema({
 });
 
 // hook checks id url_count is initaliazed if not it intializes it
-urlSchema.pre('save', function(next) {
+urlSchema.pre('validate', function(next) {
 
   Counter.findOne({ _id: 'url_count' }, function(err, counter) {
     if (err || !counter) {
@@ -43,7 +42,7 @@ const initCounter = () => {
   startCount.save(err => console.log(err));
 };
 
-
+const Counter = mongoose.model('counter', counterSchema);
 const Url = mongoose.model('Url', urlSchema);
 
 module.exports = Url;
