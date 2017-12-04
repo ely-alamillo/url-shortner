@@ -3,11 +3,26 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const config = require('./config');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/urlShortner', { useMongoClient: true });
-// mongoose.connect(process.env.MONGODB_URI , { useMongoClient: true });
+// solve eslint error
+const logger = console;
+
+// mongoose.connect('mongodb://localhost/urlShortner', { useMongoClient: true });
+const connect = mongoose.connect(
+  config.mongodbURI,
+  { useMongoClient: true }
+);
+
+connect.then(() => {
+  logger.log('connection to mongoose sucessfull');
+}).catch((err) => {
+  logger.log('ther was an error connecting to mongoose');
+  logger.log(err);
+});
+
 
 const corsOptions = {
   'origin': true,
@@ -38,9 +53,6 @@ app.get('/test', (req, res) => {
 
 app.listen(process.env.PORT, '0.0.0.0', () => {
   // eslint-disable-next-line
-  console.log(`server running on port ${process.env.PORT}`);
-  // eslint-disable-next-line
-  console.log(process.env.MONGODB_URI);
-  // eslint-disable-next-line
-  console.log(process.env.BASE_URL);
+  logger.log(`server running on port ${process.env.PORT}`);
+  // console.log('mongo uri: ', process.env.MONGODB_URI);
 });
