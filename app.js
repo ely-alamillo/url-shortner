@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const config = require('./config');
+const dotenv = require('dotenv').config();
 
 mongoose.Promise = global.Promise;
 
@@ -12,7 +12,7 @@ const logger = console;
 
 // mongoose.connect('mongodb://localhost/urlShortner', { useMongoClient: true });
 const connect = mongoose.connect(
-  config.mongodbURI,
+  `${process.env.MONGODB_URI}`,
   { useMongoClient: true }
 );
 
