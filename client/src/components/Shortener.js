@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { FormControl, InputGroup, Row, Col } from 'react-bootstrap';
+import { isUrl } from '../helpers/helper';
 
 import './Shortener.css';
 
@@ -23,8 +24,10 @@ class Shortener extends Component {
   handleShorten(event) {
     event.preventDefault();
     const longUrl = this.state.url;
-    axios.post('https://bitsy.herokuapp.com/api/shorten', { longUrl })
-    // axios.post('http://localhost:8080/api/shorten', { longUrl })
+    if (!isUrl(longUrl)) return this.setState({ urlError: 'URL not valid, use http://likethis.com' });
+    this.setState({ urlError: null });
+    // axios.post('https://bitsy.herokuapp.com/api/shorten', { longUrl })
+    axios.post('http://localhost:8080/api/shorten', { longUrl })
       .then((res) => {
         this.setState({ shortUrl: res.data.shortUrl });
       })
@@ -50,6 +53,13 @@ class Shortener extends Component {
     );
   }
 
+  renderUrlError() {
+    return (
+      this.state.urlError &&
+      <p className='url-error'>{this.state.urlError}</p>
+    );
+  }
+
   render() {
     return (
       <div className='container center'>
@@ -71,6 +81,7 @@ class Shortener extends Component {
             </form>
           </Col>
         </Row>
+        {this.renderUrlError()}
         {this.RenderShortUrl()}
       </div>
     );
