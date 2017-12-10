@@ -30,8 +30,10 @@ const shortenUrl = (req, res) => {
     if (url) {
       // use for local dev
       // shortUrl = process.env.BASE_URL + hash.encode(url._id);
+
       // use for prod
       shortUrl = process.env.LIVE_URL + hash.encode(url._id);
+
       res.json({ shortUrl, existed: true });
       return;
     } else {
@@ -43,6 +45,7 @@ const shortenUrl = (req, res) => {
 
         // use for prod
         shortUrl = process.env.LIVE_URL + hash.encode(newUrl._id);
+
         res.json({ shortUrl, existed: false });
       });
     }
