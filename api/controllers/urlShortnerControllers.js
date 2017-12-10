@@ -29,10 +29,10 @@ const shortenUrl = (req, res) => {
     if (err) return sendUserError(err, res);
     if (url) {
       // use for local dev
-      // shortUrl = process.env.BASE_URL + hash.encode(url._id);
+      shortUrl = process.env.BASE_URL + hash.encode(url._id);
 
       // use for prod
-      shortUrl = process.env.LIVE_URL + hash.encode(url._id);
+      // shortUrl = process.env.LIVE_URL + hash.encode(url._id);
 
       res.json({ shortUrl, existed: true });
       return;
@@ -41,10 +41,10 @@ const shortenUrl = (req, res) => {
       newUrl.save((err) => {
         if (err) return sendUserError(err, res);
         // use for local dev
-        // shortUrl = process.env.BASE_URL + hash.encode(newUrl._id);
+        shortUrl = process.env.BASE_URL + hash.encode(newUrl._id);
 
         // use for prod
-        shortUrl = process.env.LIVE_URL + hash.encode(newUrl._id);
+        // shortUrl = process.env.LIVE_URL + hash.encode(newUrl._id);
 
         res.json({ shortUrl, existed: false });
       });
@@ -56,9 +56,13 @@ const shortenUrl = (req, res) => {
 const decodeShortUrl = (req, res) => {
   const { encodedUrl } = req.params;
   const id = hash.decode(encodedUrl);
+  console.log('this is the id: ', id);
   Url.findOne({ _id: id }, (err, url) => {
     // if (err) return sendUserError(err, res);
-    if (err) return res.redirect('https://bitsy.herokuapp.com/');
+    console.log('inside decode url:', url);
+    console.log('*****************');
+    // if (err) return res.redirect('https://bitsy.herokuapp.com/');
+    if (err) return res.redirect('http://localhost:8080/');
     res.redirect(url.long_url);
   });
 };
