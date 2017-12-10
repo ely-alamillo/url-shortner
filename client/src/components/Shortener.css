@@ -24,3 +24,9 @@
   color: #F1A032;
   font-size: 2em;
 }
+
+.url-error {
+  margin-top: 3rem;
+  color: red;
+  font-size: 2em;
+}
