@@ -57,7 +57,8 @@ const decodeShortUrl = (req, res) => {
   const { encodedUrl } = req.params;
   const id = hash.decode(encodedUrl);
   Url.findOne({ _id: id }, (err, url) => {
-    if (err) return sendUserError(err, res);
+    // if (err) return sendUserError(err, res);
+    if (err) return res.redirect('https://bitsy.herokuapp.com/');
     res.redirect(url.long_url);
   });
 };
