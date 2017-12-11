@@ -62,7 +62,7 @@ const decodeShortUrl = (req, res) => {
     console.log('inside decode url:', url);
     console.log('*****************');
     // if (err) return res.redirect('https://bitsy.herokuapp.com/');
-    if (err) return res.redirect('http://localhost:8080/');
+    if (err || url === null) return res.redirect('http://localhost:8080/404');
     res.redirect(url.long_url);
   });
 };
