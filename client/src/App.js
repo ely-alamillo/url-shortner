@@ -6,6 +6,7 @@ import Navigation from './components/Navigation';
 import Shortener from './components/Shortener';
 import Hello from './components/Hello';
 import About from './components/About';
+import ErrorPage from './components/ErrorPage';
 import './App.css';
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
         <Route path='/' exact component={Shortener} />
         <Route path='/docs' component={Hello} />
         <Route path='/about' component={About} />
+        <Route path='/404' component={ErrorPage} />
       </div>
     );
   }
