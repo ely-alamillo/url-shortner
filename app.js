@@ -50,6 +50,10 @@ app.get('/test', (req, res) => {
   res.json({ message: 'hello ely I am working' });
 });
 
+//The 404 Route (ALWAYS Keep this as the last route)
+app.get('*', function(req, res){
+  res.redirect('what???', 404);
+});
 
 app.listen(process.env.PORT, '0.0.0.0', () => {
   // eslint-disable-next-line
