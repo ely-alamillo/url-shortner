@@ -12,6 +12,7 @@ const routes = (server) => {
   server.route('/:encodedUrl')
     .get(urlControllers.decodeShortUrl);
 
+
   server.use('/api', apiRoutes);
 };
 
