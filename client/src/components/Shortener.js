@@ -41,15 +41,13 @@ class Shortener extends Component {
   RenderShortUrl() {
     return (
       this.state.shortUrl &&
-      <Row>
-        <Col md={8} mdOffset={2}>
-          <div className='short-url'>
-            <a href={this.state.shortUrl} className='short-url-link' target='_blank'>
-              {this.state.shortUrl}
-            </a>
-          </div>
-        </Col>
-      </Row>
+      <div className="alert-container">
+        <div class="alert alert-success">
+          <a href={this.state.shortUrl} className='short-url-link' target='_blank'>
+            {this.state.shortUrl}
+          </a>
+        </div>
+      </div>
     );
   }
 

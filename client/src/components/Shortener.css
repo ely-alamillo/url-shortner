@@ -17,12 +17,12 @@
 
 .short-url-link {
   color: #F1A032;
-  font-size: 2em;
+  font-size: 1em;
 }
 
 .short-url-link:hover {
   color: #F1A032;
-  font-size: 2em;
+  font-size: 1em;
 }
 
 .url-error {
@@ -34,3 +34,49 @@
 .alert-container {
   margin-top: 3%;
 }
+
+.input-group-lg>.input-group-btn>.btn {
+  font-size: 13px;
+}
+
+/*==================================================
+=            Bootstrap 3 Media Queries             =
+==================================================*/
+
+    /*==========  Mobile First Method  ==========*/
+
+    /* Custom, iPhone Retina */
+    @media only screen and (min-width : 320px) {
+  
+    }
+
+    /* Extra Small Devices, Phones */
+    @media only screen and (min-width : 480px) {
+      .short-url-link {
+        color: #F1A032;
+        font-size: 2em;
+      }
+      
+      .short-url-link:hover {
+        color: #F1A032;
+        font-size: 2em;
+      }
+      .input-group-lg>.input-group-btn>.btn {
+        font-size: 18px;
+      }
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+
+    }
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+
+    }
