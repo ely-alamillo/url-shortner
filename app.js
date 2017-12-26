@@ -10,11 +10,11 @@ mongoose.Promise = global.Promise;
 // solve eslint error
 const logger = console;
 
-const connect = mongoose.connect('mongodb://localhost/urlShortner', { useMongoClient: true });
-// const connect = mongoose.connect(
-//   `${process.env.MONGODB_URI}`,
-//   { useMongoClient: true }
-// );
+// const connect = mongoose.connect('mongodb://localhost/urlShortner', { useMongoClient: true });
+const connect = mongoose.connect(
+  `${process.env.MONGODB_URI}`,
+  { useMongoClient: true }
+);
 
 connect.then(() => {
   logger.log('connection to mongoose sucessfull');
@@ -33,7 +33,6 @@ const corsOptions = {
 };
 
 const app = express();
-app.use(express.static(path.join(__dirname, 'client/build')));
 
 // serves build from npm run build
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -45,15 +44,6 @@ app.use(cors(corsOptions));
 const { routes } = require('./api/routes/routes');
 
 routes(app);
-
-app.get('/test', (req, res) => {
-  res.json({ message: 'hello ely I am working' });
-});
-
-//The 404 Route (ALWAYS Keep this as the last route)
-app.get('*', function(req, res){
-  res.redirect('what???', 404);
-});
 
 app.listen(process.env.PORT, '0.0.0.0', () => {
   // eslint-disable-next-line
