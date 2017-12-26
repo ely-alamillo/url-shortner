@@ -22,15 +22,15 @@ class Navigation extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-            <LinkContainer to={'/about'}>
-              <NavItem>About</NavItem>
-            </LinkContainer>
             <LinkContainer exact to={'/'}>
               <NavItem>Shortener</NavItem>
             </LinkContainer>
-            <LinkContainer to={'/docs'}>
-              <NavItem>Docs</NavItem>
+            <LinkContainer to={'/about'}>
+              <NavItem>About</NavItem>
             </LinkContainer>
+            {/* <LinkContainer to={'/docs'}>
+              <NavItem>Docs</NavItem>
+            </LinkContainer> */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
