@@ -10,7 +10,7 @@ class Shortener extends Component {
     super();
     this.state = {
       url: '',
-      shortUrl: null,
+      shortUrl: null
     };
   }
 
@@ -26,64 +26,80 @@ class Shortener extends Component {
     const longUrl = this.state.url;
     if (!isUrl(longUrl)) return this.setState({ urlError: 'URL not valid' });
     this.setState({ urlError: null });
-    axios.post('https://bitsy.herokuapp.com/api/shorten', { longUrl })
-    // axios.post('http://localhost:8080/api/shorten', { longUrl })
-      .then((res) => {
+    axios
+      .post('https://bitsy.herokuapp.com/api/shorten', { longUrl })
+      // axios.post('http://localhost:8080/api/shorten', { longUrl })
+      .then(res => {
         this.setState({ shortUrl: res.data.shortUrl });
       })
-      // eslint-disable-next-line
-      .catch((err) => {
-        this.setState({ error: 'There was an error processing your request, try again.' });
+      .catch(() => {
+        this.setState({
+          error: 'There was an error processing your request, try again.'
+        });
       });
-    this.setState({ url: '' });
+    // this.setState({ url: '' });
   }
 
   RenderShortUrl() {
     return (
-      this.state.shortUrl &&
-      <div className="alert-container">
-        <div class="alert alert-success">
-          <a href={this.state.shortUrl} className='short-url-link' target='_blank'>
-            {this.state.shortUrl}
-          </a>
+      this.state.shortUrl && (
+        <div className="alert-container">
+          <div class="alert alert-success">
+            <a
+              href={this.state.shortUrl}
+              className="short-url-link"
+              target="_blank"
+            >
+              {this.state.shortUrl}
+            </a>
+          </div>
         </div>
-      </div>
+      )
     );
   }
 
   renderUrlError() {
     return (
-      this.state.urlError &&
-      // <p className='url-error'>{this.state.urlError}</p>
-      <div className="alert-container">
-        <div class="alert alert-danger">
-          <strong>{this.state.urlError}</strong>, example URL: http://www.path.com
+      this.state.urlError && (
+        // <p className='url-error'>{this.state.urlError}</p>
+        <div className="alert-container">
+          <div class="alert alert-danger">
+            <strong>{this.state.urlError}</strong>, example URL:
+            http://www.path.com
+          </div>
         </div>
-      </div>
+      )
     );
   }
 
   render() {
     return (
-      <div className='container center'>
+      <div className="container center">
         <Row>
           <Col md={8} mdOffset={2}>
-            <h1 className='main-title'>URL Shortener</h1>
+            <h1 className="main-title">URL Shortener</h1>
             <form onSubmit={this.handleShorten.bind(this)}>
-              <InputGroup bsSize='lg'>
+              <InputGroup bsSize="lg">
                 <FormControl
-                  type='text'
-                  placeholder='Enter Url...'
+                  type="text"
+                  placeholder="Enter Url..."
                   value={this.state.url}
                   onChange={this.handleUrl.bind(this)}
                 />
-                <span className='input-group-btn'>
-                  <button className='btn btn-success' type='submit'> Shorten Me! </button>
+                <span className="input-group-btn">
+                  <button className="btn btn-success" type="submit">
+                    {' '}
+                    Shorten Me!{' '}
+                  </button>
                 </span>
               </InputGroup>
             </form>
-            {this.renderUrlError()}
-            {this.RenderShortUrl()}
+            {/* {this.renderUrlError()} */}
+            {/* {this.RenderShortUrl()} */}
+          </Col>
+          <Col md={8} mdOffset={2}>
+            <div>{this.renderUrlError()}</div>
+            <div>{this.RenderShortUrl()}</div>
           </Col>
         </Row>
       </div>
