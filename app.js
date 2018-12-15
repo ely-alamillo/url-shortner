@@ -10,11 +10,11 @@ mongoose.Promise = global.Promise;
 // solve eslint error
 const logger = console;
 
-// const connect = mongoose.connect('mongodb://localhost/urlShortner', { useMongoClient: true });
-const connect = mongoose.connect(
-  `${process.env.MONGODB_URI}`,
-  { useMongoClient: true }
-);
+const connect = mongoose.connect('mongodb://localhost/urlShortner', { useMongoClient: true });
+// const connect = mongoose.connect(
+//   `${process.env.MONGODB_URI}`,
+//   { useMongoClient: true }
+// );
 
 connect.then(() => {
   logger.log('connection to mongoose sucessfull');
