@@ -13,7 +13,7 @@ const sendUserError = (err, res) => {
   } else if (err && err.message) {
     res.json({
       message: err.message,
-      stack: err.stack,
+      stack: err.stack
     });
     return;
   }
@@ -38,7 +38,7 @@ const shortenUrl = (req, res) => {
       return;
     } else {
       const newUrl = new Url({ long_url: longUrl });
-      newUrl.save((err) => {
+      newUrl.save(err => {
         if (err) return sendUserError(err, res);
         // use for local dev
         // shortUrl = process.env.BASE_URL + hash.encode(newUrl._id);
@@ -78,5 +78,5 @@ const showAllUrls = (req, res) => {
 module.exports = {
   shortenUrl,
   decodeShortUrl,
-  showAllUrls,
+  showAllUrls
 };
