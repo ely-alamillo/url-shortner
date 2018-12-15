@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { LinkContainer, Link } from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import logo from '../urlshortener.png';
 
@@ -16,7 +16,7 @@ class Navigation extends Component {
               <img src={logo}/>
             </Link> */}
             {/* for logo */}
-            <img src={logo}/>
+            <img src={logo} alt="Logo" />
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
