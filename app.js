@@ -10,26 +10,27 @@ mongoose.Promise = global.Promise;
 // solve eslint error
 const logger = console;
 
-const connect = mongoose.connect('mongodb://localhost/urlShortner', { useMongoClient: true });
-// const connect = mongoose.connect(
-//   `${process.env.MONGODB_URI}`,
-//   { useMongoClient: true }
-// );
+// const connect = mongoose.connect('mongodb://localhost/urlShortner', { useMongoClient: true });
+const connect = mongoose.connect(
+  `${process.env.MONGODB_URI}`,
+  { useMongoClient: true }
+);
 
-connect.then(() => {
-  logger.log('connection to mongoose sucessfull');
-}).catch((err) => {
-  logger.log('ther was an error connecting to mongoose');
-  logger.log(err);
-});
-
+connect
+  .then(() => {
+    logger.log('connection to mongoose sucessfull');
+  })
+  .catch(err => {
+    logger.log('ther was an error connecting to mongoose');
+    logger.log(err);
+  });
 
 const corsOptions = {
-  'origin': true,
-  'methods': 'GET, HEAD, PUT, PATCH, POST, DELETE',
-  'preflightContinue': true,
-  'optionsSuccessStatus': 204,
-  'credentials': true // enable set cookie
+  origin: true,
+  methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
+  preflightContinue: true,
+  optionsSuccessStatus: 204,
+  credentials: true // enable set cookie
 };
 
 const app = express();
