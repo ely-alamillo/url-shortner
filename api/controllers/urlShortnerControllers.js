@@ -53,6 +53,8 @@ const shortenUrl = (req, res) => {
 };
 
 // decodes the short url
+// TODO: ELY
+// maybe change this to support custom shortUrl
 const decodeShortUrl = (req, res) => {
   const { encodedUrl } = req.params;
   const id = hash.decode(encodedUrl);
