@@ -41,6 +41,9 @@ const shortenUrl = (req, res) => {
       newUrl.save(err => {
         if (err) return sendUserError(err, res);
         // use for local dev
+
+        // TODO: ELY
+        // find better way to do this
         // shortUrl = process.env.BASE_URL + hash.encode(newUrl._id);
 
         // use for prod
